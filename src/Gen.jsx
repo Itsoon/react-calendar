@@ -2,30 +2,14 @@ import React from "react";
 import "./App.css";
 
 function Gen(day_1, day_2, day_3, months) {
-  function dayComponent(day_1, day_2, day_3) {
+  function dayComponent(day) {
     return (
-      <div className="dayContainer">
-        <div className="days">
-          <ul className="dayLanguage">
-            <li>{day_1[1]}</li>
-            <li>{day_1[2]}</li>
-          </ul>
-          <div className="dayNumber">{day_1[0]}</div>
-        </div>
-        <div className="days">
-          <ul className="dayLanguage">
-            <li>{day_2[1]}</li>
-            <li>{day_2[2]}</li>
-          </ul>
-          <div className="dayNumber">{day_2[0]}</div>
-        </div>
-        <div className="days">
-          <ul className="dayLanguage">
-            <li>{day_3[1]}</li>
-            <li>{day_3[2]}</li>
-          </ul>
-          <div className="dayNumber">{day_3[0]}</div>
-        </div>
+      <div className="days">
+        <ul className="dayLanguage">
+          <li>{day[1]}</li>
+          <li>{day[2]}</li>
+        </ul>
+        <div className="dayNumber">{day[0]}</div>
       </div>
     );
   }
@@ -45,6 +29,7 @@ function Gen(day_1, day_2, day_3, months) {
       </div>
     );
   }
+
   function lines() {
     const items = [];
     for (let i = 8; i <= 20; i++) {
@@ -52,30 +37,26 @@ function Gen(day_1, day_2, day_3, months) {
     }
 
     return (
-      <div className="linesContainer">
-        {Array.from({ length: 3 }, (_, index) => (
-          <div key={index}>
-            {items.map((item) => (
-              <React.Fragment key={item}>
-                <ul className="lines">
-                  <li className="hours">
-                    <div>{item}</div>
-                  </li>
-                  <li className="line"></li>
-                </ul>
-                {item < 20 && (
-                  <ul className="lines">
-                    <li className="hours">
-                      <div>30</div>
-                    </li>
-                    <li className="line"></li>
-                  </ul>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+      <>
+        {items.map((item) => (
+          <React.Fragment key={item}>
+            <ul className="lines">
+              <li className="hours">
+                <div>{item}</div>
+              </li>
+              <li className="line"></li>
+            </ul>
+            {item < 20 && (
+              <ul className="lines">
+                <li className="hours">
+                  <div>30</div>
+                </li>
+                <li className="line"></li>
+              </ul>
+            )}
+          </React.Fragment>
         ))}
-      </div>
+      </>
     );
   }
 
@@ -83,9 +64,37 @@ function Gen(day_1, day_2, day_3, months) {
     <div className="container">
       <div className="subContainer">
         {monthsComponent(months)}
-        {dayComponent(day_1, day_2, day_3)}
-        {lines()}
-        <div className="border"></div>
+        <table>
+          <thead>
+            <tr className="dayContainer">
+              <td>{dayComponent(day_1)}</td>
+              <td>{dayComponent(day_2)}</td>
+              <td>{dayComponent(day_3)}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="linesContainer">{lines()}</td>
+              <td className="linesContainer">{lines()}</td>
+              <td className="linesContainer">{lines()}</td>
+            </tr>
+          </tbody>
+          <div className="border">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1054"
+              height="1682"
+              viewBox="0 0 1054 1682"
+              fill="none"
+            >
+              <path
+                d="M1052 0V1650C1052 1666.57 1038.57 1680 1022 1680H32C15.4315 1680 2 1666.57 2 1650V1495.44"
+                stroke="black"
+                stroke-width="4"
+              />
+            </svg>
+          </div>
+        </table>
       </div>
     </div>
   );
