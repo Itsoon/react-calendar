@@ -1,7 +1,15 @@
 import React from "react";
 import "./App.css";
 
-function Gen(day_1, day_2, day_3, months) {
+function Gen(day_1, day_2, day_3, months, states) {
+  let tableStyle;
+  let svgStyle;
+  if (states === 0) {
+    tableStyle = { margin: "0 5em 0 0" };
+  } else if (states === 1) {
+    tableStyle = { margin: "0 0 0 5em" };
+    svgStyle = { marginLeft: "5em" };
+  }
   function dayComponent(day) {
     return (
       <div className="days">
@@ -44,14 +52,14 @@ function Gen(day_1, day_2, day_3, months) {
               <li className="hours">
                 <div>{item}</div>
               </li>
-              <li className="line"></li>
+              <li className="line" />
             </ul>
             {item < 20 && (
               <ul className="lines">
                 <li className="hours">
                   <div>30</div>
                 </li>
-                <li className="line"></li>
+                <li className="line" />
               </ul>
             )}
           </React.Fragment>
@@ -64,7 +72,7 @@ function Gen(day_1, day_2, day_3, months) {
     <div className="container">
       <div className="subContainer">
         {monthsComponent(months)}
-        <table>
+        <table style={tableStyle}>
           <thead>
             <tr className="dayContainer">
               <td>{dayComponent(day_1)}</td>
@@ -83,14 +91,15 @@ function Gen(day_1, day_2, day_3, months) {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1054"
-              height="1682"
-              viewBox="0 0 1054 1682"
+              height="1692"
+              viewBox="0 0 1054 1692"
               fill="none"
+              style={svgStyle}
             >
               <path
-                d="M1052 0V1650C1052 1666.57 1038.57 1680 1022 1680H32C15.4315 1680 2 1666.57 2 1650V1495.44"
+                d="M1052 0V1660C1052 1676.57 1038.57 1690 1022 1690H32C15.4315 1690 2 1676.57 2 1660V1514.34"
                 stroke="black"
-                stroke-width="4"
+                strokeWidth="4"
               />
             </svg>
           </div>
