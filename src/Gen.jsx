@@ -1,7 +1,12 @@
-import React from "react";
 import "./App.css";
+import DayDisplay from "./components/DayDisplay";
+import MonthDisplay from "./components/MonthDisplay";
+import SundayDayDisplay from "./components/SundayDayDisplay";
+import TimetableEmptyLines from "./components/TimetableEmptyLines";
+import TimetableLinesWithTime from "./components/TimetableLinesWithTime";
+import TimetableMorningColumnLines from "./components/TimetableMorningColumnLines";
 
-function Gen(day_1, day_2, day_3, months, states) {
+function Gen(day_1, day_2, day_3, sunday, months, states) {
   let tableStyle;
   let svgStyle;
   if (states === 0) {
@@ -10,81 +15,38 @@ function Gen(day_1, day_2, day_3, months, states) {
     tableStyle = { margin: "0 0 0 5em" };
     svgStyle = { marginLeft: "5em" };
   }
-  function dayComponent(day) {
-    return (
-      <div className="days">
-        <ul className="dayLanguage">
-          <li>{day[1]}</li>
-          <li>{day[2]}</li>
-        </ul>
-        <div className="dayNumber">{day[0]}</div>
-      </div>
-    );
-  }
-  function monthsComponent(months) {
-    return (
-      <div className="months">
-        <div>
-          <span>{months[0]}</span>
-          <img
-            src="https://www.svgrepo.com/show/35641/dot.svg"
-            alt=""
-            width="14"
-            className="dotsvg"
-          />
-          <span>{months[1]}</span>
-        </div>
-      </div>
-    );
-  }
-
-  function lines() {
-    const items = [];
-    for (let i = 8; i <= 20; i++) {
-      items.push(i);
-    }
-
-    return (
-      <>
-        {items.map((item) => (
-          <React.Fragment key={item}>
-            <ul className="lines">
-              <li className="hours">
-                <div>{item}</div>
-              </li>
-              <li className="line" />
-            </ul>
-            {item < 20 && (
-              <ul className="lines">
-                <li className="hours">
-                  <div>30</div>
-                </li>
-                <li className="line" />
-              </ul>
-            )}
-          </React.Fragment>
-        ))}
-      </>
-    );
+  let splitColumn = false;
+  if (day_3[2] === "Saturday") {
+    splitColumn = true;
   }
 
   return (
     <div className="container">
       <div className="subContainer">
-        {monthsComponent(months)}
+        {MonthDisplay(months)}
         <table style={tableStyle}>
           <thead>
             <tr className="dayContainer">
-              <td>{dayComponent(day_1)}</td>
-              <td>{dayComponent(day_2)}</td>
-              <td>{dayComponent(day_3)}</td>
+              <td>{DayDisplay(day_1)}</td>
+              <td>{DayDisplay(day_2)}</td>
+              <td>{DayDisplay(day_3)}</td>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="linesContainer">{lines()}</td>
-              <td className="linesContainer">{lines()}</td>
-              <td className="linesContainer">{lines()}</td>
+              <div>
+                <td>{TimetableLinesWithTime()}</td>
+                <td>{TimetableLinesWithTime()}</td>
+                {splitColumn === true ? (
+                  <td className="specialTD">
+                    {TimetableMorningColumnLines()}
+                    {SundayDayDisplay(sunday)}
+                    {TimetableEmptyLines()}
+                  </td>
+                ) : (
+                  <td>{TimetableLinesWithTime()}</td>
+                )}
+              </div>
             </tr>
           </tbody>
           <div className="border">

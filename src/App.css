@@ -59,9 +59,13 @@ table {
 }
 .lines {
   display: flex;
+  height: 23px;
 }
 .lines:not(:last-child) {
   margin-bottom: 32px;
+}
+.linesSpecial {
+  width: 100%;
 }
 .hours div {
   width: 36px;
@@ -71,6 +75,15 @@ table {
   font-weight: 550;
 }
 .line {
+  width: 304px;
+  margin-left: 2px;
+  border-bottom: solid 1px #5e5e5e;
+}
+.lineSunday:not(:last-child) {
+  margin-bottom: 32px;
+}
+.lineSunday {
+  height: 23px;
   width: 304px;
   margin-left: 2px;
   border-bottom: solid 1px #5e5e5e;
@@ -90,5 +103,30 @@ tbody tr td {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-left: 5em; */
+}
+
+.verticalLine {
+  position: absolute;
+  top: 0;
+  height: calc(100% + 1px);
+  width: 4px;
+  margin-left: 0.65em;
+  background-color: black;
+}
+.tt {
+  padding-top: 9.34em;
+  height: auto;
+}
+.spepe {
+  width: 342px;
+  position: relative;
+  padding-top: 9.37em;
+  display: flex;
+}
+.in {
+  margin-left: 35px;
+}
+.Sunday {
+  width: 320px;
+  margin: 0 auto;
 }

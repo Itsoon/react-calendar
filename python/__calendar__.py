@@ -84,9 +84,18 @@ def gen_calendar_json(year):
     return calendar_json
 
 
-calendar_2024 = gen_calendar_json(2024)
+calendar_raw = gen_calendar_json(2024)
 
-calendar_json_string = json.dumps(calendar_2024, indent=2)
+for i in range(len(calendar_raw)):
+    if calendar_raw[i]["day"][2] == "Saturday":
+        if i + 1 < len(calendar_raw):
+            calendar_raw[i]["day_"] = calendar_raw[i + 1]["day"]
+
+calendar_clean = []
+for i in range(len(calendar_raw)):
+    if calendar_raw[i]["day"][2] != "Sunday":
+        calendar_clean.append(calendar_raw[i])
+calendar_json_string = json.dumps(calendar_clean, indent=2)
 
 with open("calendar_2024.json", "w") as file:
     file.write(calendar_json_string)
