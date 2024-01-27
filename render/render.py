@@ -20,7 +20,7 @@ i = 0
 for element in elements:
     screenshot = element.screenshot_as_png
 
-    with open(f"render/rendering/screenshot{i}.png", "wb") as f:
+    with open(f"render/rendering/page_{i}.png", "wb") as f:
         f.write(screenshot)
     f.close
     i += 1
