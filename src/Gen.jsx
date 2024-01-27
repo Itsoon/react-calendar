@@ -26,7 +26,7 @@ function Gen(day_1, day_2, day_3, sunday, months, states) {
         {MonthDisplay(months)}
         <table style={tableStyle}>
           <thead>
-            <tr className="dayContainer">
+            <tr>
               <td>{DayDisplay(day_1)}</td>
               <td>{DayDisplay(day_2)}</td>
               <td>{DayDisplay(day_3)}</td>
@@ -34,37 +34,39 @@ function Gen(day_1, day_2, day_3, sunday, months, states) {
           </thead>
           <tbody>
             <tr>
-              <div>
+              <td>{TimetableLinesWithTime()}</td>
+              <td>{TimetableLinesWithTime()}</td>
+              {splitColumn === true ? (
+                <td>
+                  {TimetableMorningColumnLines()}
+                  {SundayDayDisplay(sunday)}
+                  {TimetableEmptyLines()}
+                </td>
+              ) : (
                 <td>{TimetableLinesWithTime()}</td>
-                <td>{TimetableLinesWithTime()}</td>
-                {splitColumn === true ? (
-                  <td className="specialTD">
-                    {TimetableMorningColumnLines()}
-                    {SundayDayDisplay(sunday)}
-                    {TimetableEmptyLines()}
-                  </td>
-                ) : (
-                  <td>{TimetableLinesWithTime()}</td>
-                )}
-              </div>
+              )}
             </tr>
           </tbody>
-          <div className="border">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1054"
-              height="1692"
-              viewBox="0 0 1054 1692"
-              fill="none"
-              style={svgStyle}
-            >
-              <path
-                d="M1052 0V1660C1052 1676.57 1038.57 1690 1022 1690H32C15.4315 1690 2 1676.57 2 1660V1514.34"
-                stroke="black"
-                strokeWidth="4"
-              />
-            </svg>
-          </div>
+          <tfoot className="border">
+            <tr>
+              <td>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1054"
+                  height="1692"
+                  viewBox="0 0 1054 1692"
+                  fill="none"
+                  style={svgStyle}
+                >
+                  <path
+                    d="M1052 0V1660C1052 1676.57 1038.57 1690 1022 1690H32C15.4315 1690 2 1676.57 2 1660V1514.34"
+                    stroke="black"
+                    strokeWidth="4"
+                  />
+                </svg>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

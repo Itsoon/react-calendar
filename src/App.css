@@ -31,9 +31,6 @@
   margin-left: 20px;
 }
 table {
-  /* top | right | bottom | left */
-  /* margin: 0 5em 0 0; */
-  /* margin: 0 0 0 5em; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -63,9 +60,6 @@ table {
 }
 .lines:not(:last-child) {
   margin-bottom: 32px;
-}
-.linesSpecial {
-  width: 100%;
 }
 .hours div {
   width: 36px;
@@ -98,6 +92,7 @@ tbody tr td {
   top: 17.5em;
   left: 3.6em;
   width: 100%;
+  border-spacing: 0;
 }
 .border svg {
   display: flex;
@@ -113,17 +108,13 @@ tbody tr td {
   margin-left: 0.65em;
   background-color: black;
 }
-.tt {
-  padding-top: 9.34em;
-  height: auto;
-}
-.spepe {
+.contMtLines {
   width: 342px;
   position: relative;
   padding-top: 9.37em;
   display: flex;
 }
-.in {
+.subContMtLines {
   margin-left: 35px;
 }
 .Sunday {

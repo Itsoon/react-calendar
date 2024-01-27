@@ -5,9 +5,9 @@ function TimetableEmptyLines() {
 
   return (
     <>
-      <div className="spepe">
+      <div className="contMtLines">
         <div className="verticalLine"></div>
-        <div className="in">
+        <div className="subContMtLines">
           {items.map((item) => (
             <React.Fragment key={item}>
               <ul className="lines">
